@@ -87,32 +87,18 @@ extension BinaryTree{
 
 
 extension BinaryTree{
-  func topView(node:BinaryTreeNode?){
+ 
+  func binaryTreeLeafPrint(node:BinaryTreeNode?){
+    if node == nil{
+      return
+    }
+    if node?.left == nil && node?.right == nil {
+      print(node?.value ?? -1)
+    }
+    binaryTreeLeafPrint(node: node?.left)
+    binaryTreeLeafPrint(node: node?.right)
     
-    
   }
-  
-}
-
-
-class BinaryNodeQueue{
-  var nodes:[BinaryTreeNode] = []
-  var level:Int!
-  
-  var isEmpty:Bool{
-    return nodes.isEmpty
-  }
-  
-  func enqueue(node:BinaryTreeNode, level:Int){
-    nodes.insert(node, at: 0)
-    self.level = level
-  }
-  func deque() -> BinaryTreeNode?{
-    guard let last = nodes.last else {return nil}
-    nodes.removeLast()
-    return last
-  }
-  
   
 }
 
@@ -154,5 +140,8 @@ binaryTreeRoot.leftView(node: binaryTreeRoot.root, level: 1)
 binaryTreeRoot.maxLevel = 0
 print("Right View Tree")
 binaryTreeRoot.rightView(node: binaryTreeRoot.root, level: 1)
+
+print("Leaf node")
+binaryTreeRoot.binaryTreeLeafPrint(node: binaryTreeRoot.root)
 
 
